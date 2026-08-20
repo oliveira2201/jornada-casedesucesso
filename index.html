@@ -30,7 +30,8 @@
   <link rel="preconnect" href="https://www.googletagmanager.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@600;700&display=swap" rel="stylesheet" /></noscript>
 
   <!-- ===== Google Tag Manager ===== -->
   <script>
@@ -176,6 +177,14 @@ nav{
 .btn.ghost:hover{ border-color:var(--orange); color:var(--orange); background:rgba(232,97,42,.08); }
 section.bege .btn.ghost, section.white .btn.ghost{ color:var(--ink); border-color:rgba(27,23,18,.28); }
 section.bege .btn.ghost:hover, section.white .btn.ghost:hover{ border-color:var(--orange); color:var(--orange); background:rgba(232,97,42,.06); }
+
+#comeco-diag{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--font-label); font-weight:700; font-size:.9rem; letter-spacing:.02em; text-transform:uppercase;
+  padding:15px 26px; border-radius:8px; transition:all .18s ease;
+  color:#fff; border:1px solid rgba(255,255,255,.32);
+}
+#comeco-diag:hover{ border-color:var(--orange); color:var(--orange); background:rgba(232,97,42,.08); }
 
 #hero-wa, #comeco-wa, #final-wa{
   display:inline-flex; align-items:center; gap:10px;
@@ -639,7 +648,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible{ outline:2px solid 
       <div class="comeco-cta reveal">
         <a id="comeco-wa" href="https://wa.me/551127700941?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Jornada%20Case%20de%20Sucesso.">Falar com a nossa IA agora
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
-        <a href="#comeco" class="btn ghost">Quero meu diagnóstico gratuito</a>
+        <a id="comeco-diag" href="https://wa.me/551127700941?text=Ol%C3%A1!%20Quero%20meu%20diagn%C3%B3stico%20gratuito.">Quero meu diagnóstico gratuito</a>
       </div>
     </div>
   </section>
