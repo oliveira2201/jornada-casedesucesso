@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://www.googletagmanager.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=Inter:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@600;700&display=swap" rel="stylesheet" />
 
   <!-- ===== Google Tag Manager ===== -->
   <script>
@@ -41,6 +41,294 @@
     })(window,document,'script','dataLayer','GTM-P5T8W4LR');
   </script>
   <!-- ===== End Google Tag Manager ===== -->
+
+<style>
+*, *::before, *::after{ box-sizing:border-box; margin:0; padding:0; }
+
+:root{
+  --orange:#E8612A;
+  --orange-hover:#c94f1e;
+  --dark:#0a0907;
+  --dark-2:#141210;
+  --bege:#FDF8F5;
+  --white:#FFFFFF;
+  --ink:#1b1712;
+  --ink-soft:#6b6259;
+  --fog:#b9b2a8;
+  --fog-soft:#8a8177;
+  --line-dark:rgba(255,255,255,.12);
+  --line-light:rgba(27,23,18,.12);
+  --c-c:#E8612A;
+  --c-a:#7C3AED;
+  --c-s:#16A34A;
+  --c-e:#2563EB;
+  --green:#16A34A;
+  --font-display:"Bebas Neue", sans-serif;
+  --font-body:"DM Sans", sans-serif;
+  --font-label:"Inter", sans-serif;
+  --wrap:1180px;
+}
+
+html{ scroll-behavior:smooth; }
+body{
+  font-family:var(--font-body);
+  background:var(--white);
+  color:var(--ink);
+  font-size:1.02rem;
+  line-height:1.62;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{ background:var(--orange); color:#fff; }
+.wrap{ max-width:var(--wrap); margin:0 auto; padding:0 28px; }
+img{ max-width:100%; height:auto; display:block; }
+a{ color:inherit; text-decoration:none; }
+main{ position:relative; z-index:1; }
+
+/* ---------- tipografia ---------- */
+.kicker{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--font-label); font-size:.72rem; font-weight:700;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--orange);
+}
+.kicker .bar{ width:30px; height:1px; background:var(--orange); }
+section.dark .kicker{ color:#ff8a54; }
+section.dark .kicker .bar{ background:#ff8a54; }
+
+h1, .h2, .fase-corpo h3, .comeco-step h3, .faq summary, .final h2{
+  font-family:var(--font-display); font-weight:400; text-transform:uppercase; letter-spacing:.02em;
+}
+h1{ font-size:clamp(2.3rem, 5.4vw, 4.2rem); line-height:1.05; color:#fff; }
+.h2{ font-size:clamp(1.8rem, 3.4vw, 2.6rem); line-height:1.12; color:#fff; }
+section.bege .h2, section.white .h2{ color:var(--ink); }
+.acc{ color:var(--orange); }
+.lead{ font-size:1.06rem; color:var(--fog); max-width:42em; }
+section.bege .lead, section.white .lead{ color:var(--ink-soft); }
+.sec-head{ max-width:720px; margin-bottom:44px; }
+.sec-head .lead{ margin-top:14px; }
+section{ padding:104px 0; position:relative; }
+section.dark{ background:var(--dark); color:var(--fog); }
+section.bege{ background:var(--bege); }
+section.white{ background:var(--white); }
+.fecho{
+  font-family:var(--font-body); font-style:italic; font-weight:500;
+  font-size:clamp(1.25rem, 2.2vw, 1.6rem); color:var(--orange); max-width:28em; line-height:1.35;
+}
+
+/* ---------- nav ---------- */
+nav{
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  background:rgba(10,9,7,.72); border-bottom:1px solid var(--line-dark);
+}
+.nav-in{ display:flex; align-items:center; justify-content:space-between; height:64px; }
+.nav-logo{ display:flex; align-items:center; }
+.nav-logo img{ height:24px; width:auto; display:block; }
+.nav-links{
+  display:flex; gap:24px; font-family:var(--font-label); font-size:.8rem;
+  font-weight:600; letter-spacing:.02em; text-transform:uppercase; color:var(--fog);
+}
+.nav-links a:hover{ color:#fff; }
+.nav-cta{
+  font-family:var(--font-label); font-size:.8rem; font-weight:700; letter-spacing:.02em;
+  text-transform:uppercase; color:#fff; padding:9px 16px; border-radius:8px; background:var(--orange);
+  transition:background .15s ease;
+}
+.nav-cta:hover{ background:var(--orange-hover); }
+@media (max-width:860px){ .nav-links{ display:none; } }
+
+/* ---------- botões ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--font-label); font-weight:700; font-size:.9rem; letter-spacing:.02em; text-transform:uppercase;
+  padding:15px 26px; border-radius:8px; transition:all .18s ease;
+}
+.btn svg{ width:17px; height:17px; }
+.btn.ghost{ color:#fff; border:1px solid rgba(255,255,255,.32); }
+.btn.ghost:hover{ border-color:var(--orange); color:var(--orange); background:rgba(232,97,42,.08); }
+section.bege .btn.ghost, section.white .btn.ghost{ color:var(--ink); border-color:rgba(27,23,18,.28); }
+section.bege .btn.ghost:hover, section.white .btn.ghost:hover{ border-color:var(--orange); color:var(--orange); background:rgba(232,97,42,.06); }
+
+#hero-wa, #comeco-wa, #final-wa{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--font-label); font-weight:700; font-size:.9rem; letter-spacing:.02em; text-transform:uppercase;
+  padding:15px 26px; border-radius:8px; color:#fff; background:var(--orange);
+  box-shadow:0 14px 34px -12px rgba(232,97,42,.6);
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+#hero-wa:hover, #comeco-wa:hover, #final-wa:hover{
+  transform:translateY(-2px); background:var(--orange-hover); box-shadow:0 20px 44px -12px rgba(232,97,42,.75);
+}
+#hero-wa svg, #comeco-wa svg, #final-wa svg{ width:17px; height:17px; }
+
+/* ---------- fio do funil ---------- */
+.fio{ position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+#hero .wrap, #jornada .wrap{ position:relative; z-index:1; }
+.fio-path{ fill:none; stroke-width:2; vector-effect:non-scaling-stroke; }
+#hero .fio-path{ opacity:.32; }
+#jornada .fio-path{ opacity:.5; }
+
+/* ---------- hero ---------- */
+#hero{
+  background:radial-gradient(ellipse at 50% -10%, rgba(232,97,42,.18), transparent 60%), var(--dark);
+  padding:172px 0 96px; overflow:visible;
+}
+.hero-in{ max-width:46em; }
+.hero-actions{ display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
+
+/* ---------- confianca ---------- */
+#confianca{ background:var(--dark-2); border-top:1px solid var(--line-dark); border-bottom:1px solid var(--line-dark); padding:56px 0; }
+.confianca-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:32px; align-items:start; }
+.confianca-item strong{
+  display:block; font-family:var(--font-display); font-weight:400;
+  font-size:2.2rem; color:#fff; letter-spacing:.01em; line-height:1; margin-bottom:8px;
+}
+.confianca-item span{ font-family:var(--font-body); font-size:.86rem; color:var(--fog); }
+.confianca-selo{ display:flex; flex-direction:column; justify-content:flex-start; padding-top:6px; }
+.confianca-selo strong{
+  font-family:var(--font-label); font-weight:700; font-size:.92rem; letter-spacing:.04em;
+  text-transform:uppercase; color:var(--orange); margin-bottom:8px;
+}
+.confianca-selo span{ font-family:var(--font-body); font-size:.86rem; color:var(--fog); }
+.confianca-note{ font-size:.76rem; color:var(--fog-soft); margin-top:36px; text-align:center; line-height:1.6; }
+@media (max-width:860px){ .confianca-grid{ grid-template-columns:repeat(2,1fr); gap:26px; } }
+@media (max-width:520px){ .confianca-grid{ grid-template-columns:1fr; gap:20px; } }
+
+/* ---------- dor ---------- */
+.dor-linhas{ margin-top:10px; max-width:38em; }
+.dor-linha{
+  font-size:1.1rem; color:var(--ink); padding:24px 0 24px 22px; border-top:1px solid var(--line-light); position:relative;
+}
+.dor-linha:first-child{ border-top:none; }
+.dor-linha::before{ content:""; position:absolute; left:0; top:33px; width:10px; height:2px; background:var(--orange); }
+.dor-fecho{ margin-top:38px; }
+
+/* ---------- jornada ---------- */
+.fases{ margin-top:8px; }
+.fase{ display:grid; grid-template-columns:130px 1fr; gap:30px; align-items:start; padding:44px 0; border-top:1px solid var(--line-light); }
+.fase:first-child{ border-top:none; padding-top:0; }
+.fase-letra{ font-family:var(--font-display); font-weight:400; font-size:6.2rem; line-height:.78; }
+.fase-corpo h3{ font-size:1.5rem; color:var(--ink); margin-bottom:10px; }
+.fase-corpo p{ color:var(--ink-soft); font-size:1rem; max-width:38em; margin-bottom:14px; }
+.fase-recebe{ font-size:.95rem; color:var(--ink); }
+.fase-recebe .tag{
+  display:inline-block; font-family:var(--font-label); font-size:.68rem; font-weight:700;
+  letter-spacing:.08em; text-transform:uppercase; margin-right:6px;
+}
+.fase-c .fase-letra, .fase-c .tag{ color:var(--c-c); }
+.fase-a .fase-letra, .fase-a .tag{ color:var(--c-a); }
+.fase-s .fase-letra, .fase-s .tag{ color:var(--c-s); }
+.fase-e .fase-letra, .fase-e .tag{ color:var(--c-e); }
+@media (max-width:700px){ .fase{ grid-template-columns:1fr; gap:8px; } .fase-letra{ font-size:4rem; } }
+
+/* ---------- continuidade ---------- */
+.continuidade-body{ max-width:42em; }
+.continuidade-body p{ font-size:1.06rem; color:var(--fog); margin-bottom:20px; }
+.continuidade-honestidade{
+  margin-top:10px; padding:20px 24px; border-left:2px solid var(--orange);
+  background:rgba(232,97,42,.08); font-size:.98rem; color:#ede7e0; max-width:38em;
+}
+
+/* ---------- tecnologia ---------- */
+.tec-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:start; margin-top:8px; }
+.tec-body p{ color:var(--ink-soft); font-size:1.02rem; margin-bottom:16px; max-width:36em; }
+.tec-link{ color:var(--orange); font-weight:700; border-bottom:1px solid rgba(232,97,42,.4); }
+.tec-link:hover{ color:var(--orange-hover); }
+
+.chat-play{
+  background:var(--dark-2); border:1px solid rgba(255,255,255,.14); border-radius:14px;
+  overflow:hidden; box-shadow:0 30px 70px -30px rgba(0,0,0,.55);
+}
+.chat-play .cp-bar{ display:flex; gap:5px; padding:9px 12px; background:#1d1a16; }
+.chat-play .cp-bar i{ width:8px; height:8px; border-radius:50%; background:#3a352c; }
+.chat-play .cp-body{ background:var(--bege); padding:22px 16px; display:grid; gap:11px; }
+.msg{ max-width:82%; padding:9px 13px 8px; border-radius:13px; font-size:.86rem; line-height:1.45; }
+.msg .time{ display:block; font-size:.64rem; margin-top:5px; opacity:.65; }
+.msg.in{ background:#fff; color:var(--ink); border:1px solid var(--line-light); border-bottom-left-radius:3px; justify-self:start; }
+.msg.out{ background:var(--orange); color:#fff; border-bottom-right-radius:3px; justify-self:end; }
+.msg.out .time{ display:flex; align-items:center; gap:4px; justify-content:flex-end; color:rgba(255,255,255,.85); }
+.msg.out .time svg{ width:13px; height:13px; }
+.typing{ display:none; justify-self:end; padding:11px 14px; border-radius:13px; background:var(--orange); gap:4px; }
+.typing span{ width:6px; height:6px; border-radius:50%; background:#fff; opacity:.6; }
+.chat-play-tag{ font-size:.82rem; color:var(--ink-soft); text-align:center; margin-top:18px; max-width:34em; }
+@media (max-width:980px){ .tec-grid{ grid-template-columns:1fr; gap:36px; } }
+
+/* ---------- relatorio ---------- */
+.relatorio-shots{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin:28px 0 8px; }
+.shot-frame{ border-radius:12px; overflow:hidden; border:1px solid var(--line-light); box-shadow:0 24px 60px -30px rgba(27,23,18,.35); background:#fff; }
+.shot-frame .tb{ display:flex; gap:5px; padding:9px 12px; background:#efe6de; }
+.shot-frame .tb i{ width:8px; height:8px; border-radius:50%; background:#d8cbbd; }
+.prose-list{ list-style:none; display:grid; gap:14px; max-width:38em; margin:36px 0 8px; }
+.prose-list li{ padding-left:22px; position:relative; font-size:1rem; color:var(--ink); }
+.prose-list li::before{ content:""; position:absolute; left:0; top:.7em; width:10px; height:2px; background:var(--orange); }
+@media (max-width:820px){ .relatorio-shots{ grid-template-columns:1fr; } }
+
+/* ---------- cases ---------- */
+.cases-agg{ max-width:44em; margin-top:26px; font-size:1.02rem; color:var(--ink-soft); }
+.cases-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:36px; }
+.case-card{ border:1px solid var(--line-light); border-radius:14px; padding:24px; background:var(--bege); }
+.case-card blockquote{ font-size:.95rem; color:var(--ink); line-height:1.5; }
+.case-metric{ margin-bottom:14px; }
+.case-metric strong{ display:block; font-family:var(--font-display); font-weight:400; font-size:1.7rem; color:var(--green); }
+.case-metric span{ font-size:.72rem; color:var(--ink-soft); }
+.case-card cite{ display:flex; align-items:center; gap:12px; margin-top:16px; font-style:normal; }
+.case-logo{
+  width:42px; height:42px; border-radius:10px; flex:none; display:flex; align-items:center; justify-content:center;
+  background:rgba(232,97,42,.12); border:1px solid rgba(232,97,42,.3); color:var(--orange);
+  font-family:var(--font-display); font-weight:400; font-size:1rem;
+}
+.case-id strong{ display:block; color:var(--ink); font-family:var(--font-display); font-weight:400; font-size:1.05rem; letter-spacing:.01em; }
+.case-id span{ color:var(--ink-soft); font-size:.78rem; display:block; }
+.case-insta{ display:inline-block; margin-top:2px; font-size:.76rem; color:var(--orange); }
+.case-insta:hover{ color:var(--orange-hover); }
+@media (max-width:860px){ .cases-grid{ grid-template-columns:1fr; } }
+
+/* ---------- comeco ---------- */
+.comeco-steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin:36px 0 44px; }
+.comeco-step .num{ font-family:var(--font-display); font-weight:400; font-size:1.2rem; color:var(--orange); }
+.comeco-step h3{ color:#fff; font-size:1.2rem; margin:10px 0 8px; }
+.comeco-step p{ font-size:.96rem; color:var(--fog); }
+.comeco-cta{ display:flex; gap:14px; flex-wrap:wrap; }
+@media (max-width:860px){ .comeco-steps{ grid-template-columns:1fr; gap:24px; } }
+
+/* ---------- faq ---------- */
+.faq{ max-width:760px; margin-top:8px; }
+.faq details{ border-bottom:1px solid var(--line-light); }
+.faq summary{
+  cursor:pointer; list-style:none; display:flex; justify-content:space-between; gap:20px; align-items:center;
+  padding:19px 4px; font-size:1.05rem; color:var(--ink);
+}
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary .pl{ color:var(--orange); font-size:1.3rem; font-family:var(--font-body); transition:transform .2s; flex-shrink:0; }
+.faq details[open] summary .pl{ transform:rotate(45deg); }
+.faq details p{ padding:0 4px 20px; font-size:.96rem; color:var(--ink-soft); max-width:60em; }
+
+/* ---------- cta final ---------- */
+.final{
+  text-align:center; border-radius:20px; padding:74px 30px;
+  background:linear-gradient(180deg, #181410, var(--dark));
+  border:1px solid rgba(232,97,42,.32); box-shadow:0 40px 90px -40px rgba(232,97,42,.35);
+  margin-top:76px;
+}
+.final h2{ font-size:clamp(1.7rem,3.6vw,2.5rem); color:#fff; max-width:19em; margin:0 auto; }
+.final p{ margin:16px auto 0; max-width:34em; color:var(--fog); font-family:var(--font-body); text-transform:none; letter-spacing:normal; }
+.final .acts{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:32px; }
+#faq .final .btn.ghost{ color:#fff; border-color:rgba(255,255,255,.32); }
+#faq .final .btn.ghost:hover{ border-color:var(--orange); color:var(--orange); background:rgba(232,97,42,.08); }
+
+footer{ background:var(--dark); border-top:1px solid var(--line-dark); padding:36px 0 46px; font-size:.78rem; color:var(--fog-soft); }
+.foot-in{ display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+.foot-logo{ display:flex; align-items:center; gap:10px; }
+.foot-logo img{ height:20px; width:auto; }
+
+a:focus-visible, button:focus-visible, summary:focus-visible{ outline:2px solid var(--orange); outline-offset:3px; border-radius:4px; }
+
+@media (max-width:700px){
+  section{ padding:72px 0; }
+  #hero{ padding:140px 0 64px; }
+  .final{ padding:52px 22px; }
+}
+</style>
 </head>
 <body>
   <!-- ===== Google Tag Manager (noscript) ===== -->
@@ -50,6 +338,300 @@
   </noscript>
   <!-- ===== End Google Tag Manager (noscript) ===== -->
 
-  <!-- seções: Task 2 -->
+  <nav>
+    <div class="wrap nav-in">
+      <a href="#hero" class="nav-logo" aria-label="Jornada Case de Sucesso"><img src="assets/logo.png" alt="Case de Sucesso" width="120" height="51"></a>
+      <div class="nav-links">
+        <a href="#jornada">A jornada</a>
+        <a href="#tecnologia">Tecnologia</a>
+        <a href="#relatorio">O relatório</a>
+        <a href="#cases">Cases</a>
+        <a href="#faq">Dúvidas</a>
+      </div>
+      <a href="https://wa.me/551127700941?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Jornada%20Case%20de%20Sucesso." class="nav-cta">Falar com a IA</a>
+    </div>
+  </nav>
+
+  <main>
+
+  <section id="hero" class="dark">
+    <svg class="fio" aria-hidden="true" viewBox="0 0 200 760" preserveAspectRatio="none">
+      <path class="fio-path" stroke="#E8612A" d="M100,0 C55,95 145,165 100,270 C55,375 145,445 100,545 C60,635 140,675 100,760" />
+    </svg>
+    <div class="wrap hero-in">
+      <span class="kicker reveal" style="transition-delay:0s;"><span class="bar"></span>JORNADA CASE DE SUCESSO</span>
+      <h1 class="reveal" style="margin-top:18px; transition-delay:.1s;">SEU NEGÓCIO É O PRÓXIMO <span class="acc">CASE DE SUCESSO.</span></h1>
+      <p class="lead reveal" style="margin-top:22px; transition-delay:.2s;">A gente faz o anúncio, a página, o atendimento por IA e a qualificação, e te entrega o lead pronto e o relatório de tudo. Você só fecha.</p>
+      <div class="hero-actions reveal" style="transition-delay:.3s;">
+        <a id="hero-wa" href="https://wa.me/551127700941?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Jornada%20Case%20de%20Sucesso.">Falar com a nossa IA agora
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        <a href="#comeco" class="btn ghost">Quero meu diagnóstico gratuito</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="confianca" class="dark">
+    <div class="wrap">
+      <div class="confianca-grid">
+        <p class="confianca-item reveal" style="transition-delay:0s;"><strong>+15</strong><span>anos de mercado</span></p>
+        <p class="confianca-item reveal" style="transition-delay:.06s;"><strong>225+</strong><span>clientes atendidos</span></p>
+        <p class="confianca-item reveal" style="transition-delay:.12s;"><strong>+500</strong><span>campanhas gerenciadas</span></p>
+        <div class="confianca-selo reveal" style="transition-delay:.18s;"><strong>Tecnologia própria</strong><span>plataforma da agência, não alugada</span></div>
+      </div>
+      <p class="confianca-note reveal">Números da Agência Case de Sucesso. Os resultados lá embaixo são medidos pela nossa plataforma.</p>
+    </div>
+  </section>
+
+  <section id="dor" class="bege">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 class="h2">VOCÊ JÁ PAGOU AGÊNCIA PRA FAZER POST. AGORA COMPARE.</h2>
+      </div>
+      <div class="dor-linhas">
+        <p class="dor-linha reveal" style="transition-delay:0s;">Relatório bonito no fim do mês, resultado que não aparece.</p>
+        <p class="dor-linha reveal" style="transition-delay:.08s;">Ferramenta nova pra sua equipe operar, que ninguém opera.</p>
+        <p class="dor-linha reveal" style="transition-delay:.16s;">Lead do anúncio esperando horas por resposta, esfriando de graça.</p>
+      </div>
+      <p class="fecho dor-fecho reveal">O problema não é o seu anúncio. É tudo que deveria acontecer depois do clique, e não acontece.</p>
+    </div>
+  </section>
+
+  <section id="jornada" class="white">
+    <svg class="fio" aria-hidden="true" viewBox="0 0 200 1300" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="fioJornadaGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#E8612A" />
+          <stop offset="100%" stop-color="#16A34A" />
+        </linearGradient>
+      </defs>
+      <path class="fio-path" stroke="url(#fioJornadaGrad)" d="M100,0 C50,115 150,195 100,325 C50,455 150,535 100,665 C50,795 150,875 100,1005 C55,1135 145,1195 100,1300" />
+    </svg>
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker"><span class="bar"></span>O MÉTODO CASE, EM 90 DIAS</span>
+        <h2 class="h2" style="margin-top:16px;">A RAMPA QUE MONTA E ACELERA O SEU FUNIL.</h2>
+        <p class="lead">As quatro fases do nosso método, aplicadas nos primeiros 90 dias da assinatura. Cada fase com entregável definido e a cor dela.</p>
+      </div>
+      <div class="fases">
+        <div class="fase fase-c reveal" style="transition-delay:0s;">
+          <span class="fase-letra">C</span>
+          <div class="fase-corpo">
+            <h3>Conhecimento</h3>
+            <p>Raio-x do seu funil: de onde vem o lead, onde ele morre, quanto custa. Meta definida por escrito.</p>
+            <p class="fase-recebe"><span class="tag">Você recebe</span>o diagnóstico documentado e a meta.</p>
+          </div>
+        </div>
+        <div class="fase fase-a reveal" style="transition-delay:.08s;">
+          <span class="fase-letra">A</span>
+          <div class="fase-corpo">
+            <h3>Análise estratégica</h3>
+            <p>Posicionamento, oferta e plano: o que anunciar, pra quem, com qual página e qual conversa.</p>
+            <p class="fase-recebe"><span class="tag">Você recebe</span>o plano da campanha, antes de gastar 1 real de mídia.</p>
+          </div>
+        </div>
+        <div class="fase fase-s reveal" style="transition-delay:.16s;">
+          <span class="fase-letra">S</span>
+          <div class="fase-corpo">
+            <h3>Sistema e execução</h3>
+            <p>Montamos a página, os anúncios, a IA treinada no seu negócio e o funil com réguas de follow-up e remarketing, tudo na nossa plataforma.</p>
+            <p class="fase-recebe"><span class="tag">Você recebe</span>o funil inteiro no ar, com lead qualificado caindo na agenda.</p>
+          </div>
+        </div>
+        <div class="fase fase-e reveal" style="transition-delay:.24s;">
+          <span class="fase-letra">E</span>
+          <div class="fase-corpo">
+            <h3>Evolução</h3>
+            <p>Otimização semanal guiada pelo relatório: verba realocada pro anúncio que traz quem fecha, régua ajustada, base reaquecida.</p>
+            <p class="fase-recebe"><span class="tag">Você recebe</span>no dia 90, o seu case documentado, com números.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="continuidade" class="dark">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 class="h2">E DEPOIS DOS 90 DIAS? É AÍ QUE FICA BOM.</h2>
+      </div>
+      <div class="continuidade-body">
+        <p class="reveal" style="transition-delay:0s;">Funil não é projeto com fim, é operação: mercado muda, produto muda, a IA e as campanhas precisam de quem ajuste toda semana.</p>
+        <p class="reveal" style="transition-delay:.08s;">A assinatura continua com a gente operando e o relatório provando.</p>
+        <p class="continuidade-honestidade reveal" style="transition-delay:.16s;">Permanência mínima de 3 meses: é o tempo da rampa. Depois, fica quem está vendo resultado.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tecnologia" class="white">
+    <div class="wrap">
+      <div class="tec-grid">
+        <div>
+          <span class="kicker reveal"><span class="bar"></span>TECNOLOGIA PRÓPRIA</span>
+          <h2 class="h2 reveal" style="margin-top:16px;">A JORNADA RODA NA ORBY. PLATAFORMA NOSSA, NÃO ALUGADA.</h2>
+          <div class="tec-body reveal" style="margin-top:18px;">
+            <p>Agência comum monta seu funil em ferramenta alugada de terceiro; quando a plataforma muda o preço ou o recurso, o funil é refém.</p>
+            <p>A Orby é nossa: rastreio do clique à venda, IA que atende em segundos e qualifica, funil, remarketing na base e relatório integrado, evoluindo na velocidade dos nossos clientes.</p>
+            <p>Conheça a plataforma em <a class="tec-link" href="https://orbyhub.com.br" target="_blank" rel="noopener noreferrer">orbyhub.com.br</a>.</p>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="chat-play">
+            <div class="cp-bar"><i></i><i></i><i></i></div>
+            <div class="cp-body">
+              <div class="msg in">Boa noite! Vocês atendem minha região?<span class="time">22:41</span></div>
+              <div class="msg out">Boa noite! Atendemos sim. Me conta rapidinho: qual é o seu negócio?<span class="time">22:41 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 13l4 4L14 8M9 17l4 4L22 8"/></svg></span></div>
+              <div class="msg in">Tenho uma clínica odontológica.<span class="time">22:42</span></div>
+              <div class="msg out">Perfeito. Hoje vocês atendem quantos pacientes por semana, em média?<span class="time">22:42 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 13l4 4L14 8M9 17l4 4L22 8"/></svg></span></div>
+              <div class="msg in">Umas 60 consultas.<span class="time">22:43</span></div>
+              <div class="msg out">Ótimo. Consigo te mostrar o funil funcionando amanhã às 10h ou às 15h. Qual prefere?<span class="time">22:43 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 13l4 4L14 8M9 17l4 4L22 8"/></svg></span></div>
+              <div class="typing" aria-hidden="true"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+          <p class="chat-play-tag">22:41 de uma quarta. Lead qualificado e reunião marcada, sem ninguém do time acordado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="relatorio" class="bege">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 class="h2">VOCÊ ENXERGA CADA REAL TRABALHANDO.</h2>
+      </div>
+      <div class="relatorio-shots reveal">
+        <figure class="shot-frame">
+          <div class="tb"><i></i><i></i><i></i></div>
+          <img src="assets/analytics-c-1200.png" alt="Painel de analytics da Orby: origem dos leads, custo por lead e funil em reais" loading="lazy" width="1200" height="750">
+        </figure>
+        <figure class="shot-frame">
+          <div class="tb"><i></i><i></i><i></i></div>
+          <img src="assets/fluxo-c-1200.png" alt="Editor visual do funil de atendimento por IA da Orby" loading="lazy" width="1200" height="750">
+        </figure>
+      </div>
+      <ul class="prose-list reveal">
+        <li>De onde veio cada lead e qual anúncio o trouxe</li>
+        <li>O que a IA conversou</li>
+        <li>Custo por lead qualificado, anúncio por anúncio</li>
+        <li>O funil em reais, etapa por etapa</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="cases" class="white">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker"><span class="bar"></span>QUEM JÁ ANDA A JORNADA</span>
+        <h2 class="h2" style="margin-top:16px;">RESULTADOS QUE JÁ SÃO CASE DE SUCESSO.</h2>
+        <p class="lead">Resultados medidos pela nossa plataforma, na operação real de quem já roda com a gente.</p>
+      </div>
+      <div class="cases-grid">
+        <article class="case-card reveal" style="transition-delay:0s;">
+          <div class="case-metric"><strong>Nenhuma família sem resposta</strong><span>IA no atendimento, dia e noite</span></div>
+          <blockquote>A IA responde em segundos, tira as dúvidas e já deixa a visita combinada com a equipe. 1 em cada 5 contatos chega fora do horário comercial, e nenhum fica esperando.</blockquote>
+          <cite>
+            <span class="case-logo" aria-hidden="true">LR</span>
+            <span class="case-id"><strong>Lux Residence</strong><span>Casa de repouso</span>
+            <a class="case-insta" href="https://instagram.com/luxresidencesenior" target="_blank" rel="noopener noreferrer">@luxresidencesenior</a></span>
+          </cite>
+        </article>
+        <article class="case-card reveal" style="transition-delay:.08s;">
+          <div class="case-metric"><strong>1 em cada 3</strong><span>clientes silenciosos voltam após o follow-up</span></div>
+          <blockquote>Orçamento que fica sem resposta entra sozinho na régua de follow-up. Mais de um terço dos clientes que tinham parado de responder voltam a conversar depois do toque automático.</blockquote>
+          <cite>
+            <span class="case-logo" aria-hidden="true">VE</span>
+            <span class="case-id"><strong>Vox Embalagens</strong><span>Indústria de embalagens</span>
+            <a class="case-insta" href="https://instagram.com/voxembalagens" target="_blank" rel="noopener noreferrer">@voxembalagens</a></span>
+          </cite>
+        </article>
+        <article class="case-card reveal" style="transition-delay:.16s;">
+          <div class="case-metric"><strong>7 em cada 10</strong><span>cobranças pagas após o lembrete</span></div>
+          <blockquote>Pedido no pix ou boleto que não foi pago entra sozinho na régua de cobrança do WhatsApp. Dos que levaram o lembrete, 7 em cada 10 terminaram pagos, sem o time cobrar na mão.</blockquote>
+          <cite>
+            <span class="case-logo" aria-hidden="true">TG</span>
+            <span class="case-id"><strong>Tenda Gospel</strong><span>Loja online</span>
+            <a class="case-insta" href="https://instagram.com/tenda_gospel" target="_blank" rel="noopener noreferrer">@tenda_gospel</a></span>
+          </cite>
+        </article>
+        <article class="case-card reveal" style="transition-delay:.24s;">
+          <div class="case-metric"><strong>Relacionamento no automático</strong><span>faltantes e aniversariantes, todo dia</span></div>
+          <blockquote>Aluno que falta 5 dias recebe mensagem sem ninguém precisar lembrar; aniversariante também. Mais de 1 em cada 10 alunos tocados volta a conversar, e o time só responde quem respondeu.</blockquote>
+          <cite>
+            <span class="case-logo" aria-hidden="true">EF</span>
+            <span class="case-id"><strong>Espaço Fit</strong><span>Academia</span>
+            <a class="case-insta" href="https://instagram.com/espacofitacademia1" target="_blank" rel="noopener noreferrer">@espacofitacademia1</a></span>
+          </cite>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="comeco" class="dark">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker"><span class="bar"></span>COMO COMEÇA</span>
+        <h2 class="h2" style="margin-top:16px;">TRÊS PASSOS ATÉ O SEU FUNIL NO AR.</h2>
+      </div>
+      <div class="comeco-steps">
+        <div class="comeco-step reveal" style="transition-delay:0s;">
+          <span class="num">01</span>
+          <h3>Diagnóstico gratuito</h3>
+          <p>A gente olha seu funil e te mostra onde vaza, com número.</p>
+        </div>
+        <div class="comeco-step reveal" style="transition-delay:.08s;">
+          <span class="num">02</span>
+          <h3>Proposta com meta por escrito</h3>
+          <p>O que vamos montar, o que você recebe por fase, e o investimento.</p>
+        </div>
+        <div class="comeco-step reveal" style="transition-delay:.16s;">
+          <span class="num">03</span>
+          <h3>Kickoff da rampa</h3>
+          <p>Em dias o sistema está no ar; em 90, seu case está documentado.</p>
+        </div>
+      </div>
+      <div class="comeco-cta reveal">
+        <a id="comeco-wa" href="https://wa.me/551127700941?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Jornada%20Case%20de%20Sucesso.">Falar com a nossa IA agora
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        <a href="#comeco" class="btn ghost">Quero meu diagnóstico gratuito</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="white">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker"><span class="bar"></span>DÚVIDAS</span>
+        <h2 class="h2" style="margin-top:16px;">PERGUNTAS DE QUEM ESTÁ PENSANDO EM CONTRATAR.</h2>
+      </div>
+      <div class="faq reveal">
+        <details open><summary>A conta de anúncio e o número de WhatsApp são de quem?<span class="pl">+</span></summary><p>Seus, sempre. A campanha roda na SUA conta e o número é SEU. Se um dia sair, leva tudo.</p></details>
+        <details><summary>O que acontece depois dos 90 dias?<span class="pl">+</span></summary><p>A rampa termina, a operação não: a assinatura continua com a gente ajustando a IA e as campanhas toda semana, e o relatório provando o resultado mês a mês. Permanência mínima de 3 meses; depois, fica quem está vendo resultado.</p></details>
+        <details><summary>A verba de mídia está inclusa?<span class="pl">+</span></summary><p>Não; mensalidade é a operação. O mínimo de verba recomendado pro seu caso sai por escrito no diagnóstico.</p></details>
+        <details><summary>Funciona no meu segmento?<span class="pl">+</span></summary><p>Funciona em qualquer negócio que fecha por conversa. Nossos cases vão de casa de repouso a indústria.</p></details>
+        <details><summary>Minha base atual de contatos entra?<span class="pl">+</span></summary><p>Sim. Ela entra na régua de remarketing desde a fase de Sistema e execução, dentro da rampa dos 90 dias.</p></details>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="final reveal">
+        <span class="kicker" style="justify-content:center;"><span class="bar"></span>Comece hoje</span>
+        <h2 style="margin-top:18px;">SEU CONCORRENTE JÁ ESTÁ RESPONDENDO EM SEGUNDOS.</h2>
+        <p>O diagnóstico é gratuito e sai com número. Você decide o resto.</p>
+        <div class="acts">
+          <a id="final-wa" href="https://wa.me/551127700941?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Jornada%20Case%20de%20Sucesso.">Falar com a nossa IA agora
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <a href="#comeco" class="btn ghost">Quero meu diagnóstico gratuito</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap foot-in">
+      <div class="foot-logo"><img src="assets/favicon.png" alt="" width="20" height="20"><span>Jornada Case de Sucesso</span></div>
+      <span>Agência Case de Sucesso · jornada.vexvendas.com.br</span>
+    </div>
+  </footer>
 </body>
 </html>
