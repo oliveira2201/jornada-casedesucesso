@@ -42,6 +42,34 @@
   </script>
   <!-- ===== End Google Tag Manager ===== -->
 
+  <!-- Tracker OrbyHub (conta Comercial - SZ - OR - CS, projeto "Jornada Case de Sucesso").
+       Auto: page_view, scroll_depth, page_leave, cta_click, form_submit->identify,
+       wa_click + ponte site->conversa nos links wa.me. Le a key da propria src. -->
+  <link rel="preconnect" href="https://api.orbyhub.com.br" />
+  <script src="https://api.orbyhub.com.br/track/orby.js?key=orby_pub_bc2b21a5e93e03f487b1519558b9a85a5440ba35d597dd85&project=jornada-case-de-sucesso" defer></script>
+
+  <!-- Dados estruturados -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://casedesucesso.com/#organization",
+        "name": "Agência Case de Sucesso",
+        "url": "https://casedesucesso.com"
+      },
+      {
+        "@type": "Service",
+        "name": "Jornada Case de Sucesso",
+        "provider": { "@id": "https://casedesucesso.com/#organization" },
+        "areaServed": "BR",
+        "description": "Assinatura contínua em que a agência monta e opera o funil completo: anúncios, página, atendimento e qualificação por IA, remarketing e relatórios, sobre tecnologia própria."
+      }
+    ]
+  }
+  </script>
+
 <style>
 *, *::before, *::after{ box-sizing:border-box; margin:0; padding:0; }
 
