@@ -329,6 +329,25 @@ a:focus-visible, button:focus-visible, summary:focus-visible{ outline:2px solid 
   #hero{ padding:140px 0 64px; }
   .final{ padding:52px 22px; }
 }
+
+/* ---------- animacoes ---------- */
+.reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+.reveal.on{ opacity:1; transform:none; }
+.fio-path{ stroke-dasharray:var(--len, 1200); stroke-dashoffset:var(--len, 1200); }
+.fio-path.on{ stroke-dashoffset:0; transition:stroke-dashoffset 1.6s cubic-bezier(.4,0,.2,1); }
+.chat-play .msg{ opacity:0; transform:translateY(8px); }
+.chat-play .msg.on{ opacity:1; transform:none; transition:opacity .35s ease, transform .35s ease; }
+.chat-play .typing{ display:none; }
+.chat-play .typing.on{ display:flex; }
+@media (prefers-reduced-motion: reduce){
+  .reveal, .chat-play .msg{ opacity:1 !important; transform:none !important; transition:none !important; }
+  .fio-path{ stroke-dashoffset:0 !important; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{ animation-duration:.001s !important; transition-duration:.001s !important; }
+  html{ scroll-behavior:auto; }
+}
 </style>
 </head>
 <body>
@@ -502,11 +521,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible{ outline:2px solid 
       <div class="relatorio-shots reveal">
         <figure class="shot-frame">
           <div class="tb"><i></i><i></i><i></i></div>
-          <img src="assets/analytics-c-1200.png" srcset="assets/analytics-c-1200.png 1200w, assets/analytics-c.png 2880w" sizes="(max-width: 820px) 92vw, 46vw" alt="Painel de analytics da Orby: origem dos leads, custo por lead e funil em reais" loading="lazy" width="1200" height="750">
+          <img src="assets/analytics-c-1200.png" srcset="assets/analytics-c-1200.png 1200w, assets/analytics-c.png 2880w" sizes="(max-width: 820px) 92vw, 46vw" alt="Painel de analytics da Orby: origem dos leads, custo por lead e funil em reais" loading="lazy" width="1200" height="750" data-parallax="0.12">
         </figure>
         <figure class="shot-frame">
           <div class="tb"><i></i><i></i><i></i></div>
-          <img src="assets/fluxo-c-1200.png" srcset="assets/fluxo-c-1200.png 1200w, assets/fluxo-c.png 2880w" sizes="(max-width: 820px) 92vw, 46vw" alt="Editor visual do funil de atendimento por IA da Orby" loading="lazy" width="1200" height="750">
+          <img src="assets/fluxo-c-1200.png" srcset="assets/fluxo-c-1200.png 1200w, assets/fluxo-c.png 2880w" sizes="(max-width: 820px) 92vw, 46vw" alt="Editor visual do funil de atendimento por IA da Orby" loading="lazy" width="1200" height="750" data-parallax="0.18">
         </figure>
       </div>
       <ul class="prose-list reveal">
@@ -634,5 +653,74 @@ a:focus-visible, button:focus-visible, summary:focus-visible{ outline:2px solid 
       <span>Agência Case de Sucesso · jornada.vexvendas.com.br</span>
     </div>
   </footer>
+
+  <script>
+  (function(){
+    var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+
+    // reveals: uma vez só, ao entrar na viewport
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        e.target.classList.add("on");
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.25 });
+    document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+
+    // fio: mede o comprimento real de cada path antes de observar
+    document.querySelectorAll(".fio-path").forEach(function(p){
+      var len = p.getTotalLength();
+      p.style.setProperty("--len", len);
+      io.observe(p);
+    });
+
+    // parallax dos shots (rAF, transform-only)
+    var shots = Array.prototype.slice.call(document.querySelectorAll("[data-parallax]"));
+    var ticking = false;
+    function onScroll(){
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function(){
+        shots.forEach(function(el){
+          var r = el.getBoundingClientRect();
+          var mid = r.top + r.height / 2 - innerHeight / 2;
+          el.style.transform = "translateY(" + mid * -0.06 + "px)";
+        });
+        ticking = false;
+      });
+    }
+    addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // transcript encenado: bolhas em sequência com "digitando"
+    var chat = document.querySelector(".chat-play");
+    if (chat) {
+      var msgs = Array.prototype.slice.call(chat.querySelectorAll(".msg"));
+      var typing = chat.querySelector(".typing");
+      var played = false;
+      var cio = new IntersectionObserver(function(entries){
+        if (played || !entries[0].isIntersecting) return;
+        played = true;
+        cio.disconnect();
+        var i = 0;
+        (function next(){
+          if (i >= msgs.length) { if (typing) typing.classList.remove("on"); return; }
+          var m = msgs[i];
+          var isAi = m.classList.contains("out");
+          if (isAi && typing) typing.classList.add("on");
+          setTimeout(function(){
+            if (typing) typing.classList.remove("on");
+            m.classList.add("on");
+            i++;
+            setTimeout(next, 650);
+          }, isAi ? 900 : 250);
+        })();
+      }, { threshold: 0.5 });
+      cio.observe(chat);
+    }
+  })();
+  </script>
 </body>
 </html>
